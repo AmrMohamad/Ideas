@@ -14,6 +14,10 @@
 		2D1BF29C2B2749790065BD6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2D1BF29B2B2749790065BD6E /* Assets.xcassets */; };
 		2D1BF29F2B2749790065BD6E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D1BF29D2B2749790065BD6E /* LaunchScreen.storyboard */; };
 		2D1BF2A82B274A850065BD6E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D1BF2A72B274A850065BD6E /* StoreKit.framework */; };
+		2D568BAA2B3092AE00E7631A /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D568BA92B3092AE00E7631A /* IAPManager.swift */; };
+		2D568BAC2B3092CA00E7631A /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D568BAB2B3092CA00E7631A /* DatabaseManager.swift */; };
+		2D568BAE2B3092E000E7631A /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D568BAD2B3092E000E7631A /* AuthManager.swift */; };
+		2D568BB02B3092F500E7631A /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D568BAF2B3092F500E7631A /* StorageManager.swift */; };
 		2DA913C82B275CCC00365E55 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA913C72B275CCC00365E55 /* ProfileViewController.swift */; };
 		2DA913CA2B275D2200365E55 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA913C92B275D2200365E55 /* TabBarViewController.swift */; };
 		2DA913CC2B275D8200365E55 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA913CB2B275D8200365E55 /* SignInViewController.swift */; };
@@ -31,6 +35,10 @@
 		2D1BF29E2B2749790065BD6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D1BF2A02B2749790065BD6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D1BF2A72B274A850065BD6E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		2D568BA92B3092AE00E7631A /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
+		2D568BAB2B3092CA00E7631A /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		2D568BAD2B3092E000E7631A /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		2D568BAF2B3092F500E7631A /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		2DA913C72B275CCC00365E55 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		2DA913C92B275D2200365E55 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		2DA913CB2B275D8200365E55 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +135,10 @@
 		2DA913C52B2757F300365E55 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				2D568BA92B3092AE00E7631A /* IAPManager.swift */,
+				2D568BAB2B3092CA00E7631A /* DatabaseManager.swift */,
+				2D568BAD2B3092E000E7631A /* AuthManager.swift */,
+				2D568BAF2B3092F500E7631A /* StorageManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -147,7 +159,6 @@
 				391A63221CE5B03304322D17 /* Pods-Ideas.debug.xcconfig */,
 				5DDE01BDCF1B9436B63DC99F /* Pods-Ideas.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -266,14 +277,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D1BF2972B2749770065BD6E /* HomeViewController.swift in Sources */,
+				2D568BAE2B3092E000E7631A /* AuthManager.swift in Sources */,
+				2D568BAC2B3092CA00E7631A /* DatabaseManager.swift in Sources */,
 				2DA913CE2B275D8F00365E55 /* SignUpViewController.swift in Sources */,
 				2D1BF2932B2749770065BD6E /* AppDelegate.swift in Sources */,
 				2DA913CC2B275D8200365E55 /* SignInViewController.swift in Sources */,
 				2DA913C82B275CCC00365E55 /* ProfileViewController.swift in Sources */,
 				2DA913D22B275DB900365E55 /* CreateNewPostViewController.swift in Sources */,
+				2D568BAA2B3092AE00E7631A /* IAPManager.swift in Sources */,
 				2DA913CA2B275D2200365E55 /* TabBarViewController.swift in Sources */,
 				2D1BF2952B2749770065BD6E /* SceneDelegate.swift in Sources */,
 				2DA913D02B275DA100365E55 /* ViewPostViewController.swift in Sources */,
+				2D568BB02B3092F500E7631A /* StorageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

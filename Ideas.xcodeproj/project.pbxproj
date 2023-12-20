@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0B41D5D47FA04A01D2FCC93D /* Pods_Ideas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7427DEB4E9137C061F2506D6 /* Pods_Ideas.framework */; };
+		2D12E1FF2B31F0840074E769 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D12E1FE2B31F0840074E769 /* GoogleService-Info.plist */; };
 		2D1BF2932B2749770065BD6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BF2922B2749770065BD6E /* AppDelegate.swift */; };
 		2D1BF2952B2749770065BD6E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BF2942B2749770065BD6E /* SceneDelegate.swift */; };
 		2D1BF2972B2749770065BD6E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BF2962B2749770065BD6E /* HomeViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D12E1FE2B31F0840074E769 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2D1BF28F2B2749770065BD6E /* Ideas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ideas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D1BF2922B2749770065BD6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D1BF2942B2749770065BD6E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				2DA913C32B2757DB00365E55 /* Views */,
 				2DA913C42B2757E600365E55 /* Controllers */,
 				2DA913C62B2757FC00365E55 /* Supported Files */,
+				2D12E1FE2B31F0840074E769 /* GoogleService-Info.plist */,
 				2D1BF2A02B2749790065BD6E /* Info.plist */,
 			);
 			path = Ideas;
@@ -101,6 +104,34 @@
 				7427DEB4E9137C061F2506D6 /* Pods_Ideas.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2D568BB12B30F27E00E7631A /* Core Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				2DA913C92B275D2200365E55 /* TabBarViewController.swift */,
+				2D1BF2962B2749770065BD6E /* HomeViewController.swift */,
+				2DA913C72B275CCC00365E55 /* ProfileViewController.swift */,
+			);
+			path = "Core Tabs";
+			sourceTree = "<group>";
+		};
+		2D568BB32B30F2BA00E7631A /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				2DA913CB2B275D8200365E55 /* SignInViewController.swift */,
+				2DA913CD2B275D8F00365E55 /* SignUpViewController.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		2D568BB42B30F2E800E7631A /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				2DA913CF2B275DA100365E55 /* ViewPostViewController.swift */,
+				2DA913D12B275DB900365E55 /* CreateNewPostViewController.swift */,
+			);
+			path = Posts;
 			sourceTree = "<group>";
 		};
 		2DA913C22B2757D300365E55 /* Models */ = {
@@ -121,13 +152,9 @@
 		2DA913C42B2757E600365E55 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				2DA913C92B275D2200365E55 /* TabBarViewController.swift */,
-				2D1BF2962B2749770065BD6E /* HomeViewController.swift */,
-				2DA913C72B275CCC00365E55 /* ProfileViewController.swift */,
-				2DA913CB2B275D8200365E55 /* SignInViewController.swift */,
-				2DA913CD2B275D8F00365E55 /* SignUpViewController.swift */,
-				2DA913CF2B275DA100365E55 /* ViewPostViewController.swift */,
-				2DA913D12B275DB900365E55 /* CreateNewPostViewController.swift */,
+				2D568BB12B30F27E00E7631A /* Core Tabs */,
+				2D568BB32B30F2BA00E7631A /* Auth */,
+				2D568BB42B30F2E800E7631A /* Posts */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -224,6 +251,7 @@
 			files = (
 				2D1BF29F2B2749790065BD6E /* LaunchScreen.storyboard in Resources */,
 				2D1BF29C2B2749790065BD6E /* Assets.xcassets in Resources */,
+				2D12E1FF2B31F0840074E769 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

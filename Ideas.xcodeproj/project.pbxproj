@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0B41D5D47FA04A01D2FCC93D /* Pods_Ideas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7427DEB4E9137C061F2506D6 /* Pods_Ideas.framework */; };
+		2D026C632B343AFA00DF2EF7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D026C622B343AFA00DF2EF7 /* User.swift */; };
+		2D026C652B343B1800DF2EF7 /* BlogPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D026C642B343B1800DF2EF7 /* BlogPost.swift */; };
 		2D12E1FF2B31F0840074E769 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D12E1FE2B31F0840074E769 /* GoogleService-Info.plist */; };
 		2D1BF2932B2749770065BD6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BF2922B2749770065BD6E /* AppDelegate.swift */; };
 		2D1BF2952B2749770065BD6E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BF2942B2749770065BD6E /* SceneDelegate.swift */; };
@@ -28,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D026C622B343AFA00DF2EF7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		2D026C642B343B1800DF2EF7 /* BlogPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogPost.swift; sourceTree = "<group>"; };
 		2D12E1FE2B31F0840074E769 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2D1BF28F2B2749770065BD6E /* Ideas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ideas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D1BF2922B2749770065BD6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 		2DA913C22B2757D300365E55 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2D026C622B343AFA00DF2EF7 /* User.swift */,
+				2D026C642B343B1800DF2EF7 /* BlogPost.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -304,12 +310,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D026C652B343B1800DF2EF7 /* BlogPost.swift in Sources */,
 				2D1BF2972B2749770065BD6E /* HomeViewController.swift in Sources */,
 				2D568BAE2B3092E000E7631A /* AuthManager.swift in Sources */,
 				2D568BAC2B3092CA00E7631A /* DatabaseManager.swift in Sources */,
 				2DA913CE2B275D8F00365E55 /* SignUpViewController.swift in Sources */,
 				2D1BF2932B2749770065BD6E /* AppDelegate.swift in Sources */,
 				2DA913CC2B275D8200365E55 /* SignInViewController.swift in Sources */,
+				2D026C632B343AFA00DF2EF7 /* User.swift in Sources */,
 				2DA913C82B275CCC00365E55 /* ProfileViewController.swift in Sources */,
 				2DA913D22B275DB900365E55 /* CreateNewPostViewController.swift in Sources */,
 				2D568BAA2B3092AE00E7631A /* IAPManager.swift in Sources */,

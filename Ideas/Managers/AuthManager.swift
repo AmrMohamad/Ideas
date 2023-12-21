@@ -14,11 +14,11 @@ final class AuthManager {
 
     private init() {}
 
-    public var isSignedIn: Bool {
+    var isSignedIn: Bool {
         return auth.currentUser != nil
     }
 
-    public func signUp(
+    func signUp(
         email: String,
         password: String,
         completion: @escaping (Bool) -> Void
@@ -37,7 +37,7 @@ final class AuthManager {
         }
     }
 
-    public func signIn(
+    func signIn(
         email: String,
         password: String,
         completion: @escaping (Bool) -> Void
@@ -53,7 +53,7 @@ final class AuthManager {
         }
     }
 
-    public func signOut(
+    func signOut(
         completion: (Bool) -> Void
     ) {
         do {

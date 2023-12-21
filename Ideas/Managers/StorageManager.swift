@@ -6,11 +6,41 @@
 //
 
 import FirebaseStorage
-import Foundation
+import UIKit
 
 final class StorageManager {
     static let shared = StorageManager()
     private let storage = Storage.storage()
 
     private init() {}
+    
+    public func uploadUserProfilePicture(
+        email: String,
+        image: UIImage?,
+        completion: @escaping (Bool) -> Void
+    ) {
+        
+    }
+    
+    public func downloadProfilePictureFor(
+        user: User,
+        completion: @escaping (URL?) -> Void
+    ){
+        
+    }
+    
+    public func uploadBlogHeaderImage(
+        blogPost: BlogPost,
+        image: UIImage?,
+        completion: @escaping (Bool) -> Void
+    ) {
+        
+    }
+    
+    public func downloadBlogHeaderImage(
+        blogPost: BlogPost,
+        completion: @escaping (URL?) -> Void
+    ){
+        
+    }
 }

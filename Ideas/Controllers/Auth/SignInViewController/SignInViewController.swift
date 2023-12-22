@@ -24,7 +24,7 @@ class SignInViewController: UIViewController {
         tf.layer.cornerRadius = 8
         tf.layer.shadowRadius = 6.0
         tf.layer.shadowOpacity = 0.2
-        tf.layer.shadowColor = UIColor.label.cgColor
+        tf.layer.shadowColor = UIColor.black.cgColor
         tf.layer.shadowOffset = CGSize(width: 0.0, height: 4.5)
         return tf
     }()
@@ -42,7 +42,7 @@ class SignInViewController: UIViewController {
         tf.layer.cornerRadius = 8
         tf.layer.shadowRadius = 6.0
         tf.layer.shadowOpacity = 0.2
-        tf.layer.shadowColor = UIColor.label.cgColor
+        tf.layer.shadowColor = UIColor.black.cgColor
         tf.layer.shadowOffset = CGSize(width: 0.0, height: 4.5)
         return tf
     }()
@@ -81,6 +81,8 @@ class SignInViewController: UIViewController {
         view.addSubview(passwordTextField)
         view.addSubview(signinButton)
         view.addSubview(createAccountButton)
+        
+        initializeHideKeyboard()
     }
     
     override func viewDidLayoutSubviews() {
@@ -124,6 +126,11 @@ class SignInViewController: UIViewController {
     }
     
     @objc private func createAccountButtonTapped (){
-        print("createAccountButtonTapped")
+        let vc = SignUpViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        if #available(iOS 15.0, *) {
+            nav.sheetPresentationController?.prefersGrabberVisible = true
+        }
+        present(nav, animated: true)
     }
 }

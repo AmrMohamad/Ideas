@@ -40,16 +40,16 @@ final class AuthManager {
     func signIn(
         email: String,
         password: String,
-        completion: @escaping (Bool) -> Void
+        completion: @escaping (Bool,String?) -> Void
     ) {
         auth.signIn(withEmail: email, password: password) { result, error in
             guard result != nil, error == nil else {
-                completion(false)
+                completion(false,error!.localizedDescription)
                 print(error!)
                 return
             }
             
-            completion(true)
+            completion(true,nil)
         }
     }
 

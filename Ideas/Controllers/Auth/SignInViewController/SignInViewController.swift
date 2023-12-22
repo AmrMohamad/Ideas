@@ -122,7 +122,30 @@ class SignInViewController: UIViewController {
     }
     
     @objc private func signinButtonTapped (){
-        print("signed in")
+        guard let email = emailTextField.text, !email.isEmpty,
+              let password = passwordTextField.text, !password.isEmpty
+        else {
+            let alert = UIAlertController(
+                title: "Something Wrong",
+                message: "Check that the email and password are filled",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "Try Again", style: .default))
+            self.present(alert, animated: true)
+            return
+        }
+        AuthManager.shared.signIn(email: email, password: password) { [weak self] isSuccess, errorMessage in
+            if isSuccess {
+                let vc = TabBarViewController()
+                vc.modalPresentationStyle = .fullScreen
+                self?.present(vc, animated: true)
+            }
+            else {
+                let alert = UIAlertController(title: "Something Wrong", message: errorMessage, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Try Again", style: .default))
+                self?.present(alert, animated: true)
+            }
+        }
     }
     
     @objc private func createAccountButtonTapped (){

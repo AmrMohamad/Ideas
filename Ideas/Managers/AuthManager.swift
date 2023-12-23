@@ -21,19 +21,23 @@ final class AuthManager {
     func signUp(
         email: String,
         password: String,
-        completion: @escaping (Bool) -> Void
+        completion: @escaping (Bool,String?) -> Void
     ) {
         guard !email.trimmingCharacters(in: CharacterSet.whitespaces).isEmpty,
               !password.trimmingCharacters(in: CharacterSet.whitespaces).isEmpty,
-              password.count >= 6 else { return }
+              password.count >= 6
+        else {
+            completion(false,"Check that the password more than or equal 6 characters.")
+            return
+        }
         auth.createUser(withEmail: email, password: password) { result, error in
             guard result != nil, error == nil else {
-                completion(false)
+                completion(false,error!.localizedDescription)
                 print(error!)
                 return
             }
             
-            completion(true)
+            completion(true,nil)
         }
     }
 

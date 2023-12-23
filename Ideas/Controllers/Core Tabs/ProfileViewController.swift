@@ -23,6 +23,23 @@ class ProfileViewController: UIViewController {
     }
 
     @objc private func handleSignOutButtonTapped() {
-        
+        let alert = UIAlertController(title: "Sign Up", message: "Are you sure about Signing Out?", preferredStyle: .alert)
+        let signoutAction = UIAlertAction(title: "Sign Out", style: .destructive) { [weak self]_ in
+            AuthManager.shared.signOut { [weak self] isSuccess in
+                if isSuccess {
+                    let nav = UINavigationController(rootViewController: SignInViewController())
+                    nav.modalPresentationStyle = .fullScreen
+                    self?.present(nav, animated: true)
+                }else{
+                    let alert = UIAlertController(title: "Something Wrong", message: "There is someting wrong with network. Try again later.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Try Again", style: .default))
+                    self?.present(alert, animated: true)
+                }
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Canecl", style: .cancel)
+        alert.addAction(signoutAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
     }
 }

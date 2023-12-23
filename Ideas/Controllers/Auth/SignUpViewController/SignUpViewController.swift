@@ -38,6 +38,8 @@ class SignUpViewController: UIViewController {
         let tf = UITextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.keyboardType = .emailAddress
+        tf.textContentType = .username
+        tf.isSecureTextEntry = false
         tf.autocapitalizationType = .none
         tf.autocorrectionType = .no
         tf.placeholder = "Email Address"
@@ -57,6 +59,7 @@ class SignUpViewController: UIViewController {
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.placeholder = "Password"
         tf.isSecureTextEntry = true
+        tf.textContentType = .password
         tf.autocapitalizationType = .none
         tf.autocorrectionType = .no
         tf.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
@@ -92,48 +95,68 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let stack = UIStackView(arrangedSubviews: [
-            pickPictureForUserButton,
-            nameTextField,
-            emailTextField,
-            passwordTextField
-        ])
-        stack.axis = .vertical
-        stack.spacing = 16
-        stack.alignment = .center
-        stack.distribution = .fill
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(stack)
+        view.addSubview(pickPictureForUserButton)
+        view.addSubview(nameTextField)
+        view.addSubview(emailTextField)
+        view.addSubview(passwordTextField)
         view.addSubview(signUpButton)
+        
         NSLayoutConstraint.activate([
-            stack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 2),
-            stack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            stack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             
-            pickPictureForUserButton.heightAnchor.constraint(equalToConstant: 80),
-            pickPictureForUserButton.widthAnchor.constraint(equalToConstant: 100),
+            pickPictureForUserButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.28),
+            pickPictureForUserButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.14),
+            pickPictureForUserButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            pickPictureForUserButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 2),
             
-            nameTextField.leadingAnchor.constraint(equalTo: stack.leadingAnchor),
-            nameTextField.trailingAnchor.constraint(equalTo: stack.trailingAnchor),
+            nameTextField.topAnchor.constraint(equalTo: pickPictureForUserButton.bottomAnchor, constant: 14),
+            nameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
+            nameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
             nameTextField.heightAnchor.constraint(equalToConstant: 50),
-            
-            emailTextField.leadingAnchor.constraint(equalTo: stack.leadingAnchor),
-            emailTextField.trailingAnchor.constraint(equalTo: stack.trailingAnchor),
+
+            emailTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 12),
+            emailTextField.leadingAnchor.constraint(equalTo: nameTextField.leadingAnchor),
+            emailTextField.trailingAnchor.constraint(equalTo: nameTextField.trailingAnchor),
             emailTextField.heightAnchor.constraint(equalToConstant: 50),
-            
-            passwordTextField.leadingAnchor.constraint(equalTo: stack.leadingAnchor),
-            passwordTextField.trailingAnchor.constraint(equalTo: stack.trailingAnchor),
+
+            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 12),
+            passwordTextField.leadingAnchor.constraint(equalTo: emailTextField.leadingAnchor),
+            passwordTextField.trailingAnchor.constraint(equalTo: emailTextField.trailingAnchor),
             passwordTextField.heightAnchor.constraint(equalToConstant: 50),
+
+            signUpButton.leadingAnchor.constraint(equalTo: passwordTextField.leadingAnchor),
+            signUpButton.trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor),
+            signUpButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            signUpButton.heightAnchor.constraint(equalToConstant: 66),
             
-            signUpButton.leadingAnchor.constraint(equalTo: stack.leadingAnchor),
-            signUpButton.trailingAnchor.constraint(equalTo: stack.trailingAnchor),
-            signUpButton.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: 26),
-            signUpButton.heightAnchor.constraint(equalToConstant: 66)
             
         ])
     }
     
     @objc private func signUpButtonTapped(){
-        
+        guard let name = nameTextField.text, !name.isEmpty,
+              let email = emailTextField.text, !email.isEmpty,
+              let password = passwordTextField.text, !password.isEmpty
+        else {
+            let alert = UIAlertController(
+                title: "Something Wrong",
+                message: "Check that the form are filled",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "Try Again", style: .default))
+            self.present(alert, animated: true)
+            return
+        }
+        AuthManager.shared.signUp(email: email, password: password) { [weak self] isSuccess, errorMessage in
+            if isSuccess {
+                let vc = TabBarViewController()
+                vc.modalPresentationStyle = .fullScreen
+                self?.present(vc, animated: true)
+            }
+            else {
+                let alert = UIAlertController(title: "Something Wrong", message: errorMessage, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Try Again", style: .default))
+                self?.present(alert, animated: true)
+            }
+        }
     }
 }

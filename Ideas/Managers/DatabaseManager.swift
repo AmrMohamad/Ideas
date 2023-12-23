@@ -39,6 +39,18 @@ final class DatabaseManager {
         _ user: User,
         completion: @escaping (Bool) -> Void
     ){
-        
+        let docID = user.email
+            .replacingOccurrences(of: ".", with: "_")
+            .replacingOccurrences(of: "@", with: "_")
+        let data : [String:Any] = [
+            "name": user.name,
+            "email": user.email,
+            "profilePictureURL": user.profilePictureURL ?? NSNull()
+        ]
+        db.collection("user")
+            .document(docID)
+            .setData(data) { error in
+                completion(error == nil)
+            }
     }
 }

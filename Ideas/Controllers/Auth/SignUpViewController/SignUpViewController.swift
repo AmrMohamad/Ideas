@@ -103,7 +103,7 @@ class SignUpViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             
-            pickPictureForUserButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.28),
+            pickPictureForUserButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.36),
             pickPictureForUserButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.14),
             pickPictureForUserButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             pickPictureForUserButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 2),
@@ -148,9 +148,20 @@ class SignUpViewController: UIViewController {
         }
         AuthManager.shared.signUp(email: email, password: password) { [weak self] isSuccess, errorMessage in
             if isSuccess {
-                let vc = TabBarViewController()
-                vc.modalPresentationStyle = .fullScreen
-                self?.present(vc, animated: true)
+                let newUser = User(name: name, email: email, profilePictureURL: nil)
+                DatabaseManager.shared.insertUser(newUser) {[weak self] inserted in
+                    if inserted {
+                        DispatchQueue.main.async {
+                            let vc = TabBarViewController()
+                            vc.modalPresentationStyle = .fullScreen
+                            self?.present(vc, animated: true)
+                        }
+                    }else{
+                        let alert = UIAlertController(title: "Something Wrong", message: errorMessage, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Try Again", style: .default))
+                        self?.present(alert, animated: true)
+                    }
+                }
             }
             else {
                 let alert = UIAlertController(title: "Something Wrong", message: errorMessage, preferredStyle: .alert)

@@ -62,20 +62,36 @@ final class DatabaseManager {
             .replacingOccurrences(of: ".", with: "_")
             .replacingOccurrences(of: "@", with: "_")
         if let documentID = docID {
-            db.collection("user").document(documentID).getDocument { documentSnapshot, error in
-                dump(docID)
-                if let docSnap = documentSnapshot{
-                    if let data = docSnap.data(){
-                        let user = User(
-                            name: data["name"] as! String,
-                            email: data["email"] as! String,
-                            profilePictureURL: data["profilePictureURL"] as? URL
-                        )
-                        
-                        complation(user)
+            db.collection("user")
+                .document(documentID)
+                .addSnapshotListener { documentSnapshot, error in
+                    if let docSnap = documentSnapshot{
+                        if let data = docSnap.data(){
+                            let user = User(
+                                name: data["name"] as! String,
+                                email: data["email"] as! String,
+                                profilePictureURL: data["profilePictureURL"] as? String
+                            )
+                            
+                            complation(user)
+                        }
                     }
                 }
-            }
         }
+    }
+    
+    func addNewInfoTo(
+        user:User,
+        newInfo: [String: Any] ,
+        completion: @escaping (Bool) -> Void
+    ){
+        let docID = user.getDocumentID
+        
+        db.collection("user")
+            .document(docID)
+            .updateData(newInfo) { error in
+                completion(error == nil)
+            }
+
     }
 }

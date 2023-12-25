@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController{
 
     var user:User? {
         didSet {
@@ -27,7 +27,6 @@ class ProfileViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        label.text = "55555"
         return label
     }()
     
@@ -42,6 +41,7 @@ class ProfileViewController: UIViewController {
         let profilePicture = UIImageView(image: UIImage(systemName: "person.circle"))
         profilePicture.translatesAutoresizingMaskIntoConstraints = false
         profilePicture.contentMode = .scaleAspectFill
+        profilePicture.isUserInteractionEnabled = true
         return profilePicture
     }()
     
@@ -73,6 +73,13 @@ class ProfileViewController: UIViewController {
         view.addSubview(postsTableView)
         
         setupHeaderTableView()
+        
+        profilePictureHeader.addGestureRecognizer(
+            UITapGestureRecognizer(
+                target: self,
+                action: #selector(pickImageForProfilePicture)
+            )
+        )
     }
     
     func setupHeaderTableView() {
@@ -96,6 +103,7 @@ class ProfileViewController: UIViewController {
         headerView.addSubview(profilePictureHeader)
         //Email
         headerView.addSubview(emailLabelHeader)
+        //Name of user
         headerView.addSubview(nameLabelHeader)
         
         NSLayoutConstraint.activate([
@@ -112,6 +120,8 @@ class ProfileViewController: UIViewController {
             
         ])
         
+        profilePictureHeader.layer.cornerRadius = profilePictureHeader.frame.width/0.66
+        profilePictureHeader.layer.masksToBounds = true
     }
     
     @objc private func handleSignOutButtonTapped() {
@@ -133,5 +143,12 @@ class ProfileViewController: UIViewController {
         alert.addAction(signoutAction)
         alert.addAction(cancelAction)
         present(alert, animated: true)
+    }
+    
+    @objc private func pickImageForProfilePicture() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true)
     }
 }

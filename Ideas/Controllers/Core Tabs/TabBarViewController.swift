@@ -23,8 +23,10 @@ class TabBarViewController: UITabBarController {
         ProfileVC.title = "Profile"
         DatabaseManager.shared.getUserInfo { user in
             DispatchQueue.main.async {
-                dump(user)
                 ProfileVC.user = user
+                if let url = user.profilePictureURL{
+                    ProfileVC.profilePictureHeader.loadImagefromCacheWithURLstring(urlString: url )
+                }
             }
         }
 

@@ -14,12 +14,44 @@ final class StorageManager {
 
     private init() {}
     
-    public func uploadUserProfilePicture(
-        email: String,
+    public func uploadProfilePictureOf(
+        user: User,
         image: UIImage?,
         completion: @escaping (Bool) -> Void
     ) {
-        
+        let userImagesRef = user.getDocumentID
+        let imageCompressed = image?.jpegData(compressionQuality: 0.05)
+        let imageTitle = UUID().uuidString
+        let storageRec = storage.reference()
+            .child("chat_images")
+            .child(userImagesRef)
+            .child("\(imageTitle).jpeg")
+        if let uploadedImage = imageCompressed {
+            let uploadTask = storageRec.putData(uploadedImage, metadata: nil) { _, error in
+                if error != nil {
+                    print("error with uploading image:\n\(error!.localizedDescription)")
+                    return
+                }
+                storageRec.downloadURL { url, _ in
+                    if let safeURL = url {
+                        let info: [String: Any] = [
+                            "profilePictureURL" : safeURL.absoluteString
+                        ]
+                        DatabaseManager.shared
+                            .addNewInfoTo(
+                                user: user,
+                                newInfo: info) { updated in
+                                    if updated {
+                                        completion(true)
+                                    }else{
+                                        completion(false)
+                                    }
+                                }
+                    }
+                }
+            }
+            uploadTask.resume()
+        }
     }
     
     public func downloadProfilePictureFor(

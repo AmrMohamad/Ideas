@@ -10,5 +10,11 @@ import Foundation
 struct User{
     let name: String
     let email: String
-    let profilePictureURL: URL?
+    let profilePictureURL: String?
+    
+    var getDocumentID : String{
+        return email
+            .replacingOccurrences(of: ".", with: "_")
+            .replacingOccurrences(of: "@", with: "_")
+    }
 }

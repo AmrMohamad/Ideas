@@ -6,6 +6,7 @@
 //
 
 import FirebaseFirestore
+import FirebaseAuth
 import Foundation
 
 final class DatabaseManager {
@@ -14,7 +15,7 @@ final class DatabaseManager {
     
     private init() {}
     
-    public func insert(
+    func insert(
         BlogPost post: BlogPost,
         of user: User,
         completion: @escaping (Bool) -> Void
@@ -22,20 +23,20 @@ final class DatabaseManager {
         
     }
     
-    public func getAllPosts(
+    func getAllPosts(
         completion: @escaping ([BlogPost]) -> Void
     ){
         
     }
     
-    public func getPosts(
+    func getPosts(
         for user: User,
         completion: @escaping ([BlogPost]) -> Void
     ){
         
     }
     
-    public func insertUser(
+    func insertUser(
         _ user: User,
         completion: @escaping (Bool) -> Void
     ){
@@ -52,5 +53,29 @@ final class DatabaseManager {
             .setData(data) { error in
                 completion(error == nil)
             }
+    }
+    
+    func getUserInfo(complation: @escaping (User)->Void){
+        let docID = Auth.auth()
+            .currentUser?
+            .email?
+            .replacingOccurrences(of: ".", with: "_")
+            .replacingOccurrences(of: "@", with: "_")
+        if let documentID = docID {
+            db.collection("user").document(documentID).getDocument { documentSnapshot, error in
+                dump(docID)
+                if let docSnap = documentSnapshot{
+                    if let data = docSnap.data(){
+                        let user = User(
+                            name: data["name"] as! String,
+                            email: data["email"] as! String,
+                            profilePictureURL: data["profilePictureURL"] as? URL
+                        )
+                        
+                        complation(user)
+                    }
+                }
+            }
+        }
     }
 }

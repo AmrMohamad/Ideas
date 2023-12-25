@@ -21,6 +21,12 @@ class TabBarViewController: UITabBarController {
         homeVC.title = "Home"
         let ProfileVC = ProfileViewController()
         ProfileVC.title = "Profile"
+        DatabaseManager.shared.getUserInfo { user in
+            DispatchQueue.main.async {
+                dump(user)
+                ProfileVC.user = user
+            }
+        }
 
         let homeVCNav = UINavigationController(rootViewController: homeVC)
         let ProfileVCNav = UINavigationController(rootViewController: ProfileVC)

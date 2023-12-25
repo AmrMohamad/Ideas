@@ -11,6 +11,7 @@
 		2D026C632B343AFA00DF2EF7 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D026C622B343AFA00DF2EF7 /* User.swift */; };
 		2D026C652B343B1800DF2EF7 /* BlogPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D026C642B343B1800DF2EF7 /* BlogPost.swift */; };
 		2D12E1FF2B31F0840074E769 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2D12E1FE2B31F0840074E769 /* GoogleService-Info.plist */; };
+		2D13C8A92B37914A00899EE7 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D13C8A82B37914A00899EE7 /* PostTableViewCell.swift */; };
 		2D1BF2932B2749770065BD6E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BF2922B2749770065BD6E /* AppDelegate.swift */; };
 		2D1BF2952B2749770065BD6E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BF2942B2749770065BD6E /* SceneDelegate.swift */; };
 		2D1BF2972B2749770065BD6E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BF2962B2749770065BD6E /* HomeViewController.swift */; };
@@ -21,6 +22,7 @@
 		2D568BAC2B3092CA00E7631A /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D568BAB2B3092CA00E7631A /* DatabaseManager.swift */; };
 		2D568BAE2B3092E000E7631A /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D568BAD2B3092E000E7631A /* AuthManager.swift */; };
 		2D568BB02B3092F500E7631A /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D568BAF2B3092F500E7631A /* StorageManager.swift */; };
+		2D72EF032B384F3700B361B1 /* ProfileViewController+PostsTableViewHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D72EF022B384F3700B361B1 /* ProfileViewController+PostsTableViewHandling.swift */; };
 		2DA913C82B275CCC00365E55 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA913C72B275CCC00365E55 /* ProfileViewController.swift */; };
 		2DA913CA2B275D2200365E55 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA913C92B275D2200365E55 /* TabBarViewController.swift */; };
 		2DA913CC2B275D8200365E55 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DA913CB2B275D8200365E55 /* SignInViewController.swift */; };
@@ -36,6 +38,7 @@
 		2D026C622B343AFA00DF2EF7 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		2D026C642B343B1800DF2EF7 /* BlogPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogPost.swift; sourceTree = "<group>"; };
 		2D12E1FE2B31F0840074E769 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2D13C8A82B37914A00899EE7 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		2D1BF28F2B2749770065BD6E /* Ideas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ideas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D1BF2922B2749770065BD6E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D1BF2942B2749770065BD6E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +51,7 @@
 		2D568BAB2B3092CA00E7631A /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		2D568BAD2B3092E000E7631A /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		2D568BAF2B3092F500E7631A /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		2D72EF022B384F3700B361B1 /* ProfileViewController+PostsTableViewHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileViewController+PostsTableViewHandling.swift"; sourceTree = "<group>"; };
 		2DA913C72B275CCC00365E55 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		2DA913C92B275D2200365E55 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		2DA913CB2B275D8200365E55 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -121,7 +125,7 @@
 			children = (
 				2DA913C92B275D2200365E55 /* TabBarViewController.swift */,
 				2D1BF2962B2749770065BD6E /* HomeViewController.swift */,
-				2DA913C72B275CCC00365E55 /* ProfileViewController.swift */,
+				2D72EF012B384F0D00B361B1 /* ProfileViewController */,
 			);
 			path = "Core Tabs";
 			sourceTree = "<group>";
@@ -144,6 +148,15 @@
 			path = Posts;
 			sourceTree = "<group>";
 		};
+		2D72EF012B384F0D00B361B1 /* ProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2DA913C72B275CCC00365E55 /* ProfileViewController.swift */,
+				2D72EF022B384F3700B361B1 /* ProfileViewController+PostsTableViewHandling.swift */,
+			);
+			path = ProfileViewController;
+			sourceTree = "<group>";
+		};
 		2DA913C22B2757D300365E55 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +171,7 @@
 			children = (
 				2D1BF29D2B2749790065BD6E /* LaunchScreen.storyboard */,
 				2DD6C1482B35DC02006FE65B /* SignInHeaderView.swift */,
+				2D13C8A82B37914A00899EE7 /* PostTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -340,6 +354,7 @@
 				2D568BAE2B3092E000E7631A /* AuthManager.swift in Sources */,
 				2D568BAC2B3092CA00E7631A /* DatabaseManager.swift in Sources */,
 				2DA913CE2B275D8F00365E55 /* SignUpViewController.swift in Sources */,
+				2D13C8A92B37914A00899EE7 /* PostTableViewCell.swift in Sources */,
 				2D1BF2932B2749770065BD6E /* AppDelegate.swift in Sources */,
 				2DA913CC2B275D8200365E55 /* SignInViewController.swift in Sources */,
 				2D026C632B343AFA00DF2EF7 /* User.swift in Sources */,
@@ -351,6 +366,7 @@
 				2DD6C1492B35DC02006FE65B /* SignInHeaderView.swift in Sources */,
 				2DA913D02B275DA100365E55 /* ViewPostViewController.swift in Sources */,
 				2D568BB02B3092F500E7631A /* StorageManager.swift in Sources */,
+				2D72EF032B384F3700B361B1 /* ProfileViewController+PostsTableViewHandling.swift in Sources */,
 				2DD6C14F2B36404E006FE65B /* SignUpViewController+KeyboardHandling.swift in Sources */,
 				2DD6C14C2B3620CB006FE65B /* SignInViewController+KeyboardHandling.swift in Sources */,
 			);

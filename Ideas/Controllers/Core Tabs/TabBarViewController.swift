@@ -19,19 +19,20 @@ class TabBarViewController: UITabBarController {
     func setupControllers() {
         let homeVC = HomeViewController()
         homeVC.title = "Home"
-        let ProfileVC = ProfileViewController()
-        ProfileVC.title = "Profile"
+        let profileVC = ProfileViewController()
+        profileVC.title = "Profile"
         DatabaseManager.shared.getUserInfo { user in
             DispatchQueue.main.async {
-                ProfileVC.user = user
+                profileVC.user = user
+                homeVC.user = user
                 if let url = user.profilePictureURL{
-                    ProfileVC.profilePictureHeader.loadImagefromCacheWithURLstring(urlString: url )
+                    profileVC.profilePictureHeader.loadImagefromCacheWithURLstring(urlString: url )
                 }
             }
         }
 
         let homeVCNav = UINavigationController(rootViewController: homeVC)
-        let ProfileVCNav = UINavigationController(rootViewController: ProfileVC)
+        let ProfileVCNav = UINavigationController(rootViewController: profileVC)
 
         homeVCNav.tabBarItem.image = UIImage(systemName: "house")
         homeVCNav.tabBarItem.selectedImage = UIImage(systemName: "house.fill")

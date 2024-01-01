@@ -7,7 +7,10 @@
 
 import UIKit
 
-class CreateNewPostViewController: UIViewController {
+class CreateNewPostViewController: UIViewController, UITextViewDelegate {
+    
+    var user: User?
+    var selectedHeaderImage: UIImage?
     
     let titleTextField: UITextField = {
         let tf = UITextField()
@@ -47,6 +50,9 @@ class CreateNewPostViewController: UIViewController {
         let tv = UITextView()
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.isEditable = true
+        tv.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        tv.text = "Tell us about your great idea ...."
+        tv.textColor = UIColor.lightGray
         tv.layer.cornerRadius = 8
         tv.layer.shadowRadius = 1.5
         tv.layer.shadowOpacity = 0.2
@@ -54,6 +60,21 @@ class CreateNewPostViewController: UIViewController {
         tv.layer.shadowOffset = CGSize(width: 0.0, height: 3.5)
         return tv
     }()
+    // MARK: - Handling text field
+
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Tell us about your great idea ...."
+            textView.textColor = UIColor.lightGray
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +89,15 @@ class CreateNewPostViewController: UIViewController {
         view.addSubview(postTextView)
         
         setConstraints()
+        
+        postTextView.delegate = self
+        
+        headerImage.addGestureRecognizer(
+            UITapGestureRecognizer(
+                target: self,
+                action: #selector(selectHeaderImage)
+            )
+        )
     }
     
     func setupNavigationButtons(){
@@ -109,10 +139,45 @@ class CreateNewPostViewController: UIViewController {
     }
     
     @objc func sendPost(){
-        
+//        guard let userSafe = user,
+//              let headerImageSafe = selectedHeaderImage,
+//              postTextView.text != "", postTextView.text != "Tell us about your great idea ....",
+//              titleTextField.text != nil
+//        else {
+//            let alert = UIAlertController(title: "Something Wrong", message: "Please check of you typed a Title of the Post, select a header image and typed a great post about your idea.", preferredStyle: .alert)
+//            let cancel = UIAlertAction(title: "Try Again", style: .cancel)
+//            alert.addAction(cancel)
+//            present(alert, animated: true)
+//            return
+//        }
+//        StorageManager.shared.uploadBlogHeaderImage(
+//            OfPostForUser: <#T##User#>,
+//            image: <#T##UIImage?#>,
+//            completion: <#T##(URL?) -> Void#>
+//        )
+//        let post = BlogPost(
+//            identifier: <#T##String#>,
+//            title: <#T##String#>,
+//            timestamp: <#T##TimeInterval#>,
+//            headrImageURL: <#T##URL?#>,
+//            text: <#T##String#>
+//        )
+//        DatabaseManager.shared
+//            .insert(
+//                BlogPost: <#T##BlogPost#>,
+//                of: <#T##User#>) { <#Bool#> in
+//                    <#code#>
+//                }
     }
     
     @objc func cancelPost(){
         dismiss(animated: true)
+    }
+    
+    @objc func selectHeaderImage(){
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true)
     }
 }

@@ -62,11 +62,31 @@ final class StorageManager {
     }
     
     public func uploadBlogHeaderImage(
-        blogPost: BlogPost,
+        OfPostForUser user: User,
         image: UIImage?,
-        completion: @escaping (Bool) -> Void
+        completion: @escaping (URL?) -> Void
     ) {
-        
+        let compressedImage = image?.jpegData(compressionQuality: 0.08)
+        let imagePathRec = storage.reference()
+            .child("Posts_images")
+            .child(user.getDocumentID)
+            .child("\(UUID().uuidString).jpeg")
+        if let uploadedImage = compressedImage {
+            let uploadTask = imagePathRec.putData(uploadedImage, metadata: nil) { _, error in
+                if error != nil {
+                    print("error with uploading image:\n\(error!.localizedDescription)")
+                    return
+                }
+                imagePathRec.downloadURL { url, _ in
+                    if let safeURL = url {
+                        completion(safeURL)
+                    }else{
+                        completion(nil)
+                    }
+                }
+            }
+            uploadTask.resume()
+        }
     }
     
     public func downloadBlogHeaderImage(

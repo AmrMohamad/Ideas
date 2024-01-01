@@ -9,6 +9,8 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    var user: User?
+    
     let composeButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -49,6 +51,7 @@ class HomeViewController: UIViewController {
 
     @objc func createPost(){
         let vc = CreateNewPostViewController()
+        vc.user = self.user
         let nav = UINavigationController(rootViewController: vc)
         present(nav, animated: true)
     }

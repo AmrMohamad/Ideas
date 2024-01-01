@@ -139,17 +139,17 @@ class CreateNewPostViewController: UIViewController, UITextViewDelegate {
     }
     
     @objc func sendPost(){
-//        guard let userSafe = user,
-//              let headerImageSafe = selectedHeaderImage,
-//              postTextView.text != "", postTextView.text != "Tell us about your great idea ....",
-//              titleTextField.text != nil
-//        else {
-//            let alert = UIAlertController(title: "Something Wrong", message: "Please check of you typed a Title of the Post, select a header image and typed a great post about your idea.", preferredStyle: .alert)
-//            let cancel = UIAlertAction(title: "Try Again", style: .cancel)
-//            alert.addAction(cancel)
-//            present(alert, animated: true)
-//            return
-//        }
+        guard let userSafe = user,
+              let headerImageSafe = selectedHeaderImage,
+              postTextView.text != "", postTextView.text != "Tell us about your great idea ....",
+              titleTextField.text != nil
+        else {
+            let alert = UIAlertController(title: "Something Wrong", message: "Please check of you typed a Title of the Post, select a header image and typed a great post about your idea.", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "Try Again", style: .cancel)
+            alert.addAction(cancel)
+            present(alert, animated: true)
+            return
+        }
 //        StorageManager.shared.uploadBlogHeaderImage(
 //            OfPostForUser: <#T##User#>,
 //            image: <#T##UIImage?#>,

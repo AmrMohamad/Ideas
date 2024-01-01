@@ -20,7 +20,22 @@ final class DatabaseManager {
         of user: User,
         completion: @escaping (Bool) -> Void
     ){
-        
+        let data: [String:Any] = [
+            "identifier": post.identifier,
+            "headrImageURL": post.headrImageURL ?? NSNull(),
+            "title": post.title,
+            "text": post.text,
+            "timestamp": post.timestamp
+        ]
+        db.collection("blogs")
+            .document(post.identifier)
+            .setData(data) { error in
+            if error == nil {
+                completion(true)
+            }else {
+                completion(false)
+            }
+        }
     }
     
     func getAllPosts(

@@ -150,24 +150,45 @@ class CreateNewPostViewController: UIViewController, UITextViewDelegate {
             present(alert, animated: true)
             return
         }
-//        StorageManager.shared.uploadBlogHeaderImage(
-//            OfPostForUser: <#T##User#>,
-//            image: <#T##UIImage?#>,
-//            completion: <#T##(URL?) -> Void#>
-//        )
-//        let post = BlogPost(
-//            identifier: <#T##String#>,
-//            title: <#T##String#>,
-//            timestamp: <#T##TimeInterval#>,
-//            headrImageURL: <#T##URL?#>,
-//            text: <#T##String#>
-//        )
-//        DatabaseManager.shared
-//            .insert(
-//                BlogPost: <#T##BlogPost#>,
-//                of: <#T##User#>) { <#Bool#> in
-//                    <#code#>
-//                }
+
+        var post: BlogPost? {
+            didSet {
+                if let postSafe = post {
+                    DatabaseManager.shared
+                        .insert(
+                            BlogPost: postSafe,
+                            of: userSafe) { insterted in
+                                if insterted{
+                                    print("Successfully done")
+                                }else{
+                                    print("Successfully failed")
+                                }
+                            }
+                }
+            }
+        }
+        StorageManager.shared.uploadBlogHeaderImage(
+            OfPostForUser: userSafe,
+            image: headerImageSafe) { [weak self] url in
+                guard let self = self else {return}
+                if let safeURL = url {
+                    DispatchQueue.main.async {
+                        post = BlogPost(
+                            identifier: UUID().uuidString,
+                            title: self.titleTextField.text!,
+                            timestamp: Date().timeIntervalSince1970,
+                            headrImageURL: safeURL.absoluteString,
+                            text: self.postTextView.text
+                        )
+                    }
+                }else{
+                    let alert = UIAlertController(title: "Something Wrong", message: "", preferredStyle: .alert)
+                    let cancel = UIAlertAction(title: "Try Again", style: .cancel)
+                    alert.addAction(cancel)
+                    self.present(alert, animated: true)
+                    return
+                }
+            }
     }
     
     @objc func cancelPost(){
